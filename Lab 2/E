@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    int max = 0;
+    cin >> n;
+    while (n != 0) {
+        if (n % 2 == 0 && n >= max)
+            max = n;
+        cin >> n;
+    }
+    cout << max;
+}
