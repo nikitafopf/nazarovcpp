@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int sum = 0;
+    double N = -1;
+    int sum_square = 0;
+    double M = 0;
+    double D = 0;
+    int a = 1;
+    while (a != 0){
+        cin >> a;
+        N += 1;
+        sum += a;
+        sum_square += a*a;
+        }
+    M = sum / N;
+    D = sum_square/N - M*M;
+    cout.precision(3);
+    cout << std::fixed << M << ' ' << D;
+
+    return 0;
+}
