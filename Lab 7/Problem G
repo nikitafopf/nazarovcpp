@@ -1,0 +1,23 @@
+double find_root(double f(double), double a, double b, double tol=1e-6) {
+    double c = (a + b)/2;
+    if (f(c) < tol and f(c) > -tol)
+    {
+        return c;
+    }
+
+    if (f(a) < 0)
+    {
+        if (f(c) > 0)
+        {return find_root(f, a, c, tol);}
+
+        if (f(c) < 0)
+        { return find_root(f, c, b, tol);}
+    }
+    if (f(a) > 0)
+    {
+        if (f(c) < 0)
+            return find_root(f, a, c, tol);
+        if (f(c) > 0)
+            return find_root(f, c, b, tol);
+    }
+}
