@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+    int S;
+    int N;
+    cin >> S;
+    cin >> N;
+    vector<int> coins(N + 1);
+    coins[0] = 0;
+    for (int i = 1; i <= N; ++i)
+        cin >> coins[i];
+
+    vector<vector<int> > table(S + 1, vector<int>(N + 1, 0));
+
+    for (int i = 1; i <= S; i++)
+    {
+        table[i][0] = S + 1;
+        for (int j = 1; j <= N; j++)
+        {
+            if (coins[j] <= i)
+                table[i][j] = min(table[i - coins[j]][j] + 1, table[i][j - 1]);
+            else table[i][j] = min(table[i - 1][j] + 1, table[i][j - 1]);
+        }
+    }
+    cout << table[S][N];
+    return 0;
+}
