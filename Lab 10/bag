@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int W, N;
+    cin >> W >> N;
+    vector<int> price(N + 1);
+    vector<int> weight(N + 1);
+    price[0] = 0;
+    weight[0] = 0;
+    for (int i = 1; i <= N; ++i)
+        cin >> price[i];
+    for (int i = 1; i <= N; ++i)
+        cin >> weight[i];
+
+    vector<vector<int> > table(W + 1, vector<int>(N + 1, 0));
+
+    for (int i = 1; i <= W; i++)
+    {
+        table[i][0] = 0;
+        for (int j = 1; j <= N; j++)
+        {
+            if (weight[j] <= i)
+                table[i][j] = max(table[i - weight[j]][j - 1] + price[j], table[i][j - 1]);
+            else table[i][j] = table[i][j - 1];
+        }
+        cout << '\n';
+    }
+
+    cout << table[W][N] << '\n';
+    return 0;
+}
